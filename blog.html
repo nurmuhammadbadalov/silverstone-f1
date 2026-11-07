@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverStone F1 Uzbekistan - Yangiliklar va Maqolalar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E50914',
+                            darkRed: '#B80710',
+                            silver: '#C0C0C0',
+                            dark: '#0B0F17',
+                            card: '#151C28',
+                            border: '#2A3447',
+                            accent: '#00F0FF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(21, 28, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.35);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A3447;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-[#0B0F17] text-gray-100 font-sans min-h-screen flex flex-col antialiased custom-scrollbar">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-card border-b border-brand-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer">
+                    <div class="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center font-black text-xl text-white transform -skew-x-12 glow-red">
+                        S
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white">SILVERSTONE<span class="text-brand-red">F1</span></span>
+                        <span class="block text-[10px] tracking-widest text-gray-400 font-bold uppercase">Blog va Yangiliklar</span>
+                    </div>
+                </div>
+
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="https://t.me/ssf1_uz" target="_blank" class="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-md transition-all flex items-center">
+                        <i class="fa-paper-plane mr-2"></i>t.me/ssf1_uz
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-blue-400 text-xs font-bold uppercase tracking-widest px-4 py-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full inline-block mb-3">
+                    <i class="fa-solid fa-newspaper mr-1"></i> So'nggi Axborotlar
+                </span>
+                <h1 class="text-4xl font-black text-white">Avto Yangiliklar va Maslahatlar</h1>
+                <p class="text-gray-400 text-sm mt-2">O'zbekiston yo'llaridagi yangi radarlar, QHQ o'zgarishlari va radar detektor tanlash bo'yicha ekspert maqolalari.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Article Card 1 -->
+                <div class="glass-card rounded-3xl border border-brand-border overflow-hidden hover:border-brand-red transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-brand-card flex items-center justify-center p-4 border-b border-brand-border">
+                            <i class="fa-solid fa-camera-web text-6xl text-brand-red opacity-80"></i>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-brand-red uppercase tracking-wider block mb-2">2026 Noyabr | O'zbekiston Yo'llari</span>
+                            <h3 class="font-bold text-white text-lg mb-2 leading-snug">Yangi "Lochin" va "Multaradar" Kameralari Qanday Ishlaydi?</h3>
+                            <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+                                Toshkent va viloyatlar trassalarida o'rnatilayotgan yangi avlod radarlari doppler va LNA signalini qanday sezishi haqida batafsil ma'lumot.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://t.me/ssf1_uz" target="_blank" class="text-xs text-brand-accent hover:underline font-bold flex items-center">
+                            Maqolani O'qish <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article Card 2 -->
+                <div class="glass-card rounded-3xl border border-brand-border overflow-hidden hover:border-brand-accent transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-brand-card flex items-center justify-center p-4 border-b border-brand-border">
+                            <i class="fa-solid fa-wifi text-6xl text-brand-accent opacity-80"></i>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-brand-accent uppercase tracking-wider block mb-2">Qo'llanma | Wi-Fi Sozlash</span>
+                            <h3 class="font-bold text-white text-lg mb-2 leading-snug">Nega Wi-Fi Orqali Yangilash Ancha Qulay va Xavfsiz?</h3>
+                            <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+                                Kompyutersiz va kabel ushlamasdan, to'g'ridan-to'g'ri avtomobil salonida turib mobil ilovadan bazani yangilash sirlari.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://t.me/ssf1_uz" target="_blank" class="text-xs text-brand-accent hover:underline font-bold flex items-center">
+                            Maqolani O'qish <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Article Card 3 -->
+                <div class="glass-card rounded-3xl border border-brand-border overflow-hidden hover:border-purple-500 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="h-48 bg-brand-card flex items-center justify-center p-4 border-b border-brand-border">
+                            <i class="fa-solid fa-shield-halved text-6xl text-purple-400 opacity-80"></i>
+                        </div>
+                        <div class="p-6">
+                            <span class="text-[10px] font-bold text-purple-400 uppercase tracking-wider block mb-2">Maslahat | Anti-Shovqin</span>
+                            <h3 class="font-bold text-white text-lg mb-2 leading-snug">ISignature Tizimi Yolg'on Signallarni Qanday Bloklaydi?</h3>
+                            <p class="text-xs text-gray-400 line-clamp-3 leading-relaxed">
+                                Boshqa mashinalarning datchiklari va avtomat eshiklarga radaringiz noo'rin chalinmasligi uchun to'g'ri rejim tanlash.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="p-6 pt-0">
+                        <a href="https://t.me/ssf1_uz" target="_blank" class="text-xs text-brand-accent hover:underline font-bold flex items-center">
+                            Maqolani O'qish <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Telegram Subscribe Banner -->
+            <div class="mt-12 glass-card p-8 rounded-3xl border border-blue-500/30 text-center bg-gradient-to-r from-brand-card via-blue-950/30 to-brand-card">
+                <h3 class="text-2xl font-black text-white mb-2">Barcha Yangiliklardan Birinchilardan Bo'lib Xabardor Bo'ling</h3>
+                <p class="text-xs text-gray-300 max-w-xl mx-auto mb-6">Rasmiy Telegram kanalimizga a'zo bo'ling va haftalik GPS baza fayllari hamda avto xabarlarni oling.</p>
+                <a href="https://t.me/ssf1_uz" target="_blank" class="inline-flex items-center space-x-2 px-8 py-3.5 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-xs transition-all shadow-lg">
+                    <i class="fa-paper-plane"></i>
+                    <span>@ssf1_uz Kanaliga A'zo Bo'lish</span>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-border/60 py-6 mt-auto text-center text-xs text-gray-500">
+        &copy; 2026 SilverStone F1 Uzbekistan. Avto Yangiliklar va Blog Sahifasi.
+    </footer>
+</body>
+</html>

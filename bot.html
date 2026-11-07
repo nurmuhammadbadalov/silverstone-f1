@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverStone F1 Uzbekistan - Telegram Bot Integratsiyasi</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E50914',
+                            darkRed: '#B80710',
+                            silver: '#C0C0C0',
+                            dark: '#0B0F17',
+                            card: '#151C28',
+                            border: '#2A3447',
+                            accent: '#00F0FF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(21, 28, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.35);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A3447;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-[#0B0F17] text-gray-100 font-sans min-h-screen flex flex-col antialiased custom-scrollbar">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-card border-b border-brand-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer">
+                    <div class="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center font-black text-xl text-white transform -skew-x-12 glow-red">
+                        S
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white">SILVERSTONE<span class="text-brand-red">F1</span></span>
+                        <span class="block text-[10px] tracking-widest text-gray-400 font-bold uppercase">Telegram Bot Tizimi</span>
+                    </div>
+                </div>
+
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="tel:+998930073011" class="px-4 py-2 rounded-xl bg-brand-card border border-brand-border text-white font-bold text-xs hover:border-brand-red transition-all">
+                        <i class="fa-solid fa-phone mr-2 text-brand-red"></i>+998 93 007 30 11
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow py-12">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-brand-accent text-xs font-bold uppercase tracking-widest px-4 py-1.5 bg-brand-accent/10 border border-brand-accent/30 rounded-full inline-block mb-3">
+                    <i class="fa-solid fa-robot mr-1"></i> Telegram Integratsiyasi
+                </span>
+                <h1 class="text-4xl font-black text-white">Telegram Bot va Kanal Orqali Xizmat Olish</h1>
+                <p class="text-gray-400 text-sm mt-2">Buyurtma berish, so'nggi proshivkalarni yuklab olish va operativ yordam olish uchun bizning Telegram resurslarimizdan foydalaning.</p>
+            </div>
+
+            <!-- Bot & Channel Direct Links -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                
+                <!-- Telegram Bot Box -->
+                <div class="glass-card p-8 rounded-3xl border border-brand-red/50 hover:border-brand-red transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-brand-red/20 text-brand-red flex items-center justify-center text-3xl font-bold mb-6">
+                            <i class="fa-solid fa-robot"></i>
+                        </div>
+                        <span class="text-xs text-brand-red font-bold uppercase tracking-wider block mb-1">Rasmiy Buyurtma Boti</span>
+                        <h2 class="text-2xl font-black text-white mb-3">@dlsflslfslf_bot</h2>
+                        <p class="text-xs text-gray-300 leading-relaxed mb-6">
+                            Ushbu bot orqali ism va familiyangiz hamda telefon raqamingizni qoldirib, istalgan Silverstone F1 radar detektoriga avtomatik buyurtma berishingiz mumkin.
+                        </p>
+                    </div>
+                    <a href="https://t.me/dlsflslfslf_bot" target="_blank" class="w-full py-4 bg-brand-red hover:bg-brand-darkRed text-white font-bold rounded-xl text-center text-xs shadow-lg transition-all flex items-center justify-center">
+                        <i class="fa-solid fa-paper-plane mr-2"></i> Telegram Botni Ochish (@dlsflslfslf_bot)
+                    </a>
+                </div>
+
+                <!-- Telegram Channel Box -->
+                <div class="glass-card p-8 rounded-3xl border border-blue-500/50 hover:border-blue-500 transition-all flex flex-col justify-between">
+                    <div>
+                        <div class="w-14 h-14 rounded-2xl bg-blue-500/20 text-blue-400 flex items-center justify-center text-3xl font-bold mb-6">
+                            <i class="fa-paper-plane"></i>
+                        </div>
+                        <span class="text-xs text-blue-400 font-bold uppercase tracking-wider block mb-1">Rasmiy Axborot Kanali</span>
+                        <h2 class="text-2xl font-black text-white mb-3">t.me/ssf1_uz</h2>
+                        <p class="text-xs text-gray-300 leading-relaxed mb-6">
+                            Har haftalik yangi GPS kameralar bazasi fayllari, videoroliklar va chegirma aksiyalarini rasmiy kanalimizda kuzatib boring.
+                        </p>
+                    </div>
+                    <a href="https://t.me/ssf1_uz" target="_blank" class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-center text-xs shadow-lg transition-all flex items-center justify-center">
+                        <i class="fa-paper-plane mr-2"></i> Telegram Kanalga A'zo Bo'lish (@ssf1_uz)
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- Instruction Steps -->
+            <div class="glass-card p-8 rounded-3xl border border-brand-border">
+                <h3 class="text-xl font-bold text-white mb-6 text-center">Bot Orqali Buyurtma Berish Qadamlari:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
+                    <div class="p-4 bg-brand-dark/60 rounded-2xl border border-brand-border">
+                        <div class="w-10 h-10 rounded-full bg-brand-red text-white font-bold flex items-center justify-center mx-auto mb-3">1</div>
+                        <h4 class="font-bold text-white text-sm mb-1">Botni Ishga Tushiring</h4>
+                        <p class="text-xs text-gray-400">@dlsflslfslf_bot manziliga o'tib /start tugmasini bosing.</p>
+                    </div>
+                    <div class="p-4 bg-brand-dark/60 rounded-2xl border border-brand-border">
+                        <div class="w-10 h-10 rounded-full bg-brand-red text-white font-bold flex items-center justify-center mx-auto mb-3">2</div>
+                        <h4 class="font-bold text-white text-sm mb-1">Model va Ma'lumotlarni Yuboring</h4>
+                        <p class="text-xs text-gray-400">Ism, familiyangiz va telefon raqamingizni kiriting.</p>
+                    </div>
+                    <div class="p-4 bg-brand-dark/60 rounded-2xl border border-brand-border">
+                        <div class="w-10 h-10 rounded-full bg-brand-red text-white font-bold flex items-center justify-center mx-auto mb-3">3</div>
+                        <h4 class="font-bold text-white text-sm mb-1">Operator Bog'lanadi</h4>
+                        <p class="text-xs text-gray-400">Mutaxassisimiz +998 93 007 30 11 orqali sizga tasdiq uchun qo'ng'iroq qiladi.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-border/60 py-6 mt-auto text-center text-xs text-gray-500">
+        &copy; 2026 SilverStone F1 Uzbekistan. Telegram Integratsiyasi Sahifasi.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverStone F1 Uzbekistan - Premium Avto Radarlar va Videoregistratorlar</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E50914',
+                            darkRed: '#B80710',
+                            silver: '#C0C0C0',
+                            dark: '#0B0F17',
+                            card: '#151C28',
+                            border: '#2A3447',
+                            accent: '#00F0FF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(21, 28, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.35);
+        }
+        .glow-cyan {
+            box-shadow: 0 0 25px rgba(0, 240, 255, 0.25);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A3447;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #E50914;
+        }
+    </style>
+</head>
+<body class="bg-[#0B0F17] text-gray-100 font-sans min-h-screen flex flex-col antialiased selection:bg-brand-red selection:text-white custom-scrollbar">
+
+    <!-- NAVIGATION HEADER -->
+    <header class="sticky top-0 z-50 glass-card border-b border-brand-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="navigateTo('home')">
+                    <div class="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center font-black text-xl text-white transform -skew-x-12 glow-red">
+                        S
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white">SILVERSTONE<span class="text-brand-red">F1</span></span>
+                        <span class="block text-[10px] tracking-widest text-gray-400 font-bold uppercase">Uzbekistan Official</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation Links (5 Main Pages) -->
+                <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+                    <button onclick="navigateTo('home')" id="nav-home" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold transition-all text-brand-red bg-brand-red/10 border border-brand-red/20">
+                        <i class="fa-solid fa-house mr-2"></i>Bosh sahifa
+                    </button>
+                    <button onclick="navigateTo('catalog')" id="nav-catalog" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                        <i class="fa-solid fa-microchip mr-2"></i>Katalog & Mahsulotlar
+                    </button>
+                    <button onclick="navigateTo('ai-advisor')" id="nav-ai-advisor" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                        <i class="fa-solid fa-robot mr-2 text-brand-accent"></i>AI Maslahatchi
+                    </button>
+                    <button onclick="navigateTo('updates')" id="nav-updates" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                        <i class="fa-solid fa-download mr-2"></i>Proshivkalar
+                    </button>
+                    <button onclick="navigateTo('contact')" id="nav-contact" class="nav-btn px-4 py-2 rounded-lg text-sm font-semibold text-gray-300 hover:text-white hover:bg-white/5 transition-all">
+                        <i class="fa-solid fa-headset mr-2"></i>Aloqa & Buyurtma
+                    </button>
+                </nav>
+
+                <!-- Quick Action Phone Button -->
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="tel:+998930073011" class="flex items-center space-x-2 px-4 py-2 rounded-xl bg-brand-card border border-brand-border hover:border-brand-red transition-all group">
+                        <div class="w-8 h-8 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center group-hover:bg-brand-red group-hover:text-white transition-all">
+                            <i class="fa-solid fa-phone text-sm"></i>
+                        </div>
+                        <div class="text-left">
+                            <span class="block text-[10px] text-gray-400 font-medium">Tezkor Aloqa</span>
+                            <span class="text-xs font-bold text-white group-hover:text-brand-red transition-colors">+998 93 007 30 11</span>
+                        </div>
+                    </a>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="flex md:hidden">
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-lg text-gray-400 hover:text-white hover:bg-white/10 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-brand-border bg-brand-dark/95 backdrop-blur-xl px-4 pt-3 pb-6 space-y-2">
+            <button onclick="navigateTo('home')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-brand-red/20 flex items-center">
+                <i class="fa-solid fa-house w-6 text-brand-red"></i> Bosh sahifa
+            </button>
+            <button onclick="navigateTo('catalog')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-brand-red/20 flex items-center">
+                <i class="fa-solid fa-microchip w-6 text-brand-red"></i> Katalog & Mahsulotlar
+            </button>
+            <button onclick="navigateTo('ai-advisor')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-brand-red/20 flex items-center">
+                <i class="fa-solid fa-robot w-6 text-brand-accent"></i> AI Maslahatchi
+            </button>
+            <button onclick="navigateTo('updates')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-brand-red/20 flex items-center">
+                <i class="fa-solid fa-download w-6 text-brand-red"></i> Proshivkalar
+            </button>
+            <button onclick="navigateTo('contact')" class="w-full text-left px-4 py-3 rounded-lg text-base font-medium text-white hover:bg-brand-red/20 flex items-center">
+                <i class="fa-solid fa-headset w-6 text-brand-red"></i> Aloqa & Buyurtma
+            </button>
+            <div class="pt-4 border-t border-brand-border/50">
+                <a href="tel:+998930073011" class="w-full py-3 bg-brand-red hover:bg-brand-darkRed text-white text-center font-bold rounded-xl flex items-center justify-center space-x-2">
+                    <i class="fa-solid fa-phone"></i>
+                    <span>+998 93 007 30 11</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT AREA CONTAINER -->
+    <main class="flex-grow">
+        
+        <!-- ================= PAGE 1: HOME PAGE ================= -->
+        <section id="page-home" class="page-section">
+            <!-- Hero Banner -->
+            <div class="relative overflow-hidden py-16 md:py-24 bg-gradient-to-b from-brand-dark via-brand-card to-brand-dark border-b border-brand-border/40">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                        <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                            <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-red/10 border border-brand-red/30 text-brand-red text-xs font-bold uppercase tracking-widest">
+                                <i class="fa-solid fa-shield-halved"></i>
+                                <span>Uzbekiston Yollarida To'liq Himoya</span>
+                            </div>
+                            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-white leading-tight">
+                                Silverstone F1 <br/>
+                                <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-red via-red-400 to-brand-accent">
+                                    Doppler & Hybrid Pro
+                                </span>
+                            </h1>
+                            <p class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto lg:mx-0 font-light leading-relaxed">
+                                Yangi avlod LNA kuchaytirgichlari, Wi-Fi modul, Multaradar va radar detektorlari bilan jarimalardan kafolatlangan va ishonchli himoyalaning.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
+                                <button onclick="navigateTo('catalog')" class="w-full sm:w-auto px-8 py-4 bg-brand-red hover:bg-brand-darkRed text-white font-bold rounded-xl shadow-lg glow-red transition-all transform hover:-translate-y-0.5 flex items-center justify-center space-x-2">
+                                    <span>Katalogni Ko'rish</span>
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </button>
+                                <a href="https://t.me/ssf1_uz" target="_blank" class="w-full sm:w-auto px-8 py-4 bg-brand-card border border-brand-border hover:border-brand-accent text-white font-semibold rounded-xl transition-all flex items-center justify-center space-x-2">
+                                    <i class="fa-paper-plane text-brand-accent"></i>
+                                    <span>Telegram Kanalimiz</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="lg:col-span-5 relative">
+                            <div class="relative mx-auto max-w-md lg:max-w-none">
+                                <div class="absolute -inset-1 bg-gradient-to-r from-brand-red to-brand-accent rounded-3xl blur opacity-30 animate-pulse"></div>
+                                <div class="relative bg-brand-card border border-brand-border p-6 rounded-3xl shadow-2xl">
+                                    <img src="https://silverstonef1.uz/wp-content/uploads/2025/09/ren_sochiProII_01-300x300.jpg" alt="Silverstone F1 Sochi Pro II" class="w-full h-72 object-contain mx-auto transition-transform hover:scale-105 duration-300" onerror="this.src='https://via.placeholder.com/400x300?text=SilverStone+F1'">
+                                    <div class="mt-4 p-4 bg-brand-dark/80 rounded-2xl border border-brand-border flex items-center justify-between">
+                                        <div>
+                                            <h4 class="font-bold text-white text-sm">Sochi Pro II LNA</h4>
+                                            <p class="text-xs text-brand-accent">Eng xaridorgir model 2026</p>
+                                        </div>
+                                        <span class="px-3 py-1 bg-brand-red text-white font-extrabold text-xs rounded-lg">TOP SALE</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h2 class="text-3xl font-extrabold text-white">Nega Aynan Silverstone F1?</h2>
+                    <p class="text-gray-400 mt-2 text-sm">O'zbekiston yo'llari va kameralari (Radar, AutoCon, Lochin, Multaradar) uchun 100% moslashtirilgan flagman qurilmalar.</p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div class="glass-card p-8 rounded-2xl border border-brand-border hover:border-brand-red/50 transition-all">
+                        <div class="w-14 h-14 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-satellite-dish"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">LNA Kuchaytirgich</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Past shovqinli LNA texnologiyasi radarlarni uzoq masofadan ancha ertaroq va aniq aniqlash imkonini beradi.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl border border-brand-border hover:border-brand-accent/50 transition-all">
+                        <div class="w-14 h-14 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-wifi"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Wi-Fi Yangilanish</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Baza va proshivkalarni smartfoningiz orqali mobil ilovadan bir necha soniyada yangilang.</p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl border border-brand-border hover:border-brand-red/50 transition-all">
+                        <div class="w-14 h-14 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-microchip"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">ISignature Texnologiyasi</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed">Yolg'on signal va boshqa mashinalarning datchiklariga noo'rin chalinishni barham beruvchi aqlli filtr.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 2: CATALOG PAGE ================= -->
+        <section id="page-catalog" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <!-- Catalog Header -->
+                <div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-brand-border/60 pb-6">
+                    <div>
+                        <h1 class="text-3xl font-black text-white">Mahsulotlar Katalogi</h1>
+                        <p class="text-gray-400 text-sm mt-1">Rasmiy kafolatli Silverstone F1 qurilmalari va radarlari</p>
+                    </div>
+                    <!-- Category Filters -->
+                    <div class="flex flex-wrap gap-2" id="category-filters">
+                        <button onclick="filterCatalog('all')" class="filter-btn active px-4 py-2 rounded-xl text-xs font-bold bg-brand-red text-white shadow-lg">Barchasi</button>
+                        <button onclick="filterCatalog('combo')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-card text-gray-300 hover:text-white border border-brand-border">Kombo Qurilmalar</button>
+                        <button onclick="filterCatalog('radar')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-card text-gray-300 hover:text-white border border-brand-border">Radar Detektorlar</button>
+                        <button onclick="filterCatalog('camera')" class="filter-btn px-4 py-2 rounded-xl text-xs font-bold bg-brand-card text-gray-300 hover:text-white border border-brand-border">Videoregistratorlar</button>
+                    </div>
+                </div>
+
+                <!-- Products Grid -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8" id="products-grid">
+                    <!-- Dynamic Product Cards will be rendered via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 3: AI ADVISOR PAGE ================= -->
+        <section id="page-ai-advisor" class="page-section hidden py-12">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-2xl mx-auto mb-8">
+                    <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-brand-accent/10 border border-brand-accent/30 text-brand-accent text-xs font-bold uppercase tracking-wider mb-3">
+                        <i class="fa-solid fa-sparkles"></i>
+                        <span>Sun'iy Intellekt Yordamchisi</span>
+                    </div>
+                    <h1 class="text-3xl font-black text-white">Silverstone AI Maslahatchi</h1>
+                    <p class="text-gray-400 text-sm mt-2">Avtomobilingiz va ehtiyojingizga mos eng mukammal radarni tanlashda yordam beramiz.</p>
+                </div>
+
+                <!-- Chat Box Container -->
+                <div class="glass-card rounded-3xl border border-brand-border overflow-hidden shadow-2xl flex flex-col h-[600px]">
+                    <!-- Chat Header -->
+                    <div class="p-4 bg-brand-card border-b border-brand-border flex items-center justify-between">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-red to-brand-accent flex items-center justify-center text-white text-lg font-bold shadow-md">
+                                <i class="fa-solid fa-robot"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white text-sm">Silverstone AI Assistant</h3>
+                                <span class="flex items-center text-[10px] text-emerald-400 font-medium">
+                                    <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping mr-1.5"></span> Online | Gemini API
+                                </span>
+                            </div>
+                        </div>
+                        <button onclick="clearChat()" class="text-xs text-gray-400 hover:text-white px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 transition-colors">
+                            <i class="fa-solid fa-rotate-right mr-1"></i> Tozalash
+                        </button>
+                    </div>
+
+                    <!-- Chat Messages List -->
+                    <div id="chat-messages" class="flex-grow p-6 overflow-y-auto space-y-4 custom-scrollbar">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center text-sm font-bold flex-shrink-0">
+                                AI
+                            </div>
+                            <div class="bg-brand-card border border-brand-border p-4 rounded-2xl rounded-tl-none max-w-lg text-sm text-gray-200 leading-relaxed">
+                                Assalomu alaykum! Men Silverstone F1 sun'iy intellekt maslahatchisiman. Sizga qaysi model (Doppler, Sochi Pro, Hybrid S-Bot) ko'proq mos kelishini aniqlashga yordam beraman. Savolingizni bering!
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Suggested Prompts -->
+                    <div class="p-3 bg-brand-dark/40 border-t border-brand-border/40 flex flex-wrap gap-2">
+                        <button onclick="sendQuickPrompt('Doppler Pro II va Sochi Pro II farqi nimada?')" class="text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-brand-red/20 border border-brand-border hover:border-brand-red/40 text-gray-300 transition-all">
+                            Doppler II va Sochi Pro II farqi?
+                        </button>
+                        <button onclick="sendQuickPrompt('Toshkent shahar uchun eng yaxshi radar qaysi?')" class="text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-brand-red/20 border border-brand-border hover:border-brand-red/40 text-gray-300 transition-all">
+                            Toshkent uchun eng yaxshi radar?
+                        </button>
+                        <button onclick="sendQuickPrompt('Wi-Fi orqali proshivka qanday yangilanadi?')" class="text-xs px-3 py-1.5 rounded-lg bg-white/5 hover:bg-brand-red/20 border border-brand-border hover:border-brand-red/40 text-gray-300 transition-all">
+                            Wi-Fi proshivka yangilash?
+                        </button>
+                    </div>
+
+                    <!-- Chat Input Bar -->
+                    <form id="chat-form" onsubmit="handleChatSubmit(event)" class="p-4 bg-brand-card border-t border-brand-border flex items-center space-x-3">
+                        <input type="text" id="chat-input" placeholder="Savolingizni yozing..." class="flex-grow bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-red transition-all">
+                        <button type="submit" class="px-6 py-3 bg-brand-red hover:bg-brand-darkRed text-white font-bold rounded-xl shadow-lg transition-all flex items-center justify-center">
+                            <i class="fa-solid fa-paper-plane"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 4: UPDATES & FIRMWARE PAGE ================= -->
+        <section id="page-updates" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center max-w-3xl mx-auto mb-12">
+                    <h1 class="text-3xl font-black text-white">Proshivkalar va GPS Baza Yangilanishi</h1>
+                    <p class="text-gray-400 text-sm mt-2">O'zbekiston kameralari bazasini doimiy ravishda so'nggi versiyaga yangilab boring</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+                    <!-- Update via Mobile App -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-brand-accent transition-all">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-mobile-screen-button"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Wi-Fi Orqali Mobil Ilovadan</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            Wi-Fi modulli modellar (Doppler Pro, Hybrid S-Bot Pro, Sochi Pro II) bazasini smartfoningizdagi "Silverstone F1" rasmiy ilovasi orqali avtomobildan chiqmasdan 1 daqiqada yangilang.
+                        </p>
+                        <div class="flex flex-wrap gap-4">
+                            <a href="https://t.me/ssf1_uz" target="_blank" class="px-5 py-2.5 rounded-xl bg-brand-card border border-brand-border text-xs font-bold text-white hover:border-brand-accent transition-all">
+                                <i class="fa-brands fa-apple mr-2"></i>App Store
+                            </a>
+                            <a href="https://t.me/ssf1_uz" target="_blank" class="px-5 py-2.5 rounded-xl bg-brand-card border border-brand-border text-xs font-bold text-white hover:border-brand-accent transition-all">
+                                <i class="fa-brands fa-google-play mr-2"></i>Google Play
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Update via PC -->
+                    <div class="glass-card p-8 rounded-3xl border border-brand-border hover:border-brand-red transition-all">
+                        <div class="w-12 h-12 rounded-2xl bg-brand-red/10 text-brand-red flex items-center justify-center text-2xl font-bold mb-6">
+                            <i class="fa-solid fa-desktop"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white mb-3">Kompyuter Orqali Yangilash</h3>
+                        <p class="text-gray-400 text-sm leading-relaxed mb-6">
+                            USB kabeli orqali kompyuterga ulab yangilovchi dastur va eng so'nggi baza fayllarini rasmiy Telegram kanalimizdan yuklab olishingiz mumkin.
+                        </p>
+                        <a href="https://t.me/ssf1_uz" target="_blank" class="inline-flex items-center space-x-2 px-6 py-3 rounded-xl bg-brand-red text-white text-xs font-bold hover:bg-brand-darkRed transition-all">
+                            <i class="fa-paper-plane"></i>
+                            <span>Telegram Kanaldan Fayllarni Olish</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Latest Base Version Table -->
+                <div class="glass-card rounded-3xl border border-brand-border overflow-hidden">
+                    <div class="p-6 bg-brand-card border-b border-brand-border flex items-center justify-between">
+                        <h3 class="font-bold text-white text-base">So'nggi Baza Fayllari (O'zbekiston)</h3>
+                        <span class="text-xs px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-400 font-semibold border border-emerald-500/20">Haftalik yangilanadi</span>
+                    </div>
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left border-collapse text-sm">
+                            <thead>
+                                <tr class="border-b border-brand-border/60 text-gray-400 text-xs uppercase bg-brand-dark/40">
+                                    <th class="p-4">Model Nomi</th>
+                                    <th class="p-4">Versiya Date</th>
+                                    <th class="p-4">Hajmi</th>
+                                    <th class="p-4 text-right">Yuklab olish</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-brand-border/40 text-gray-300">
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">SilverStone F1 Sochi Pro II LNA</td>
+                                    <td class="p-4">2026.11.01</td>
+                                    <td class="p-4">14.2 MB</td>
+                                    <td class="p-4 text-right">
+                                        <a href="https://t.me/ssf1_uz" target="_blank" class="text-brand-accent hover:underline font-semibold text-xs"><i class="fa-solid fa-download mr-1"></i> Telegram bot</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">SilverStone F1 Doppler Pro II Wi-Fi</td>
+                                    <td class="p-4">2026.11.01</td>
+                                    <td class="p-4">18.5 MB</td>
+                                    <td class="p-4 text-right">
+                                        <a href="https://t.me/ssf1_uz" target="_blank" class="text-brand-accent hover:underline font-semibold text-xs"><i class="fa-solid fa-download mr-1"></i> Telegram bot</a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-semibold text-white">Silverstone F1 Hybrid S-Bot Pro</td>
+                                    <td class="p-4">2026.10.28</td>
+                                    <td class="p-4">24.0 MB</td>
+                                    <td class="p-4 text-right">
+                                        <a href="https://t.me/ssf1_uz" target="_blank" class="text-brand-accent hover:underline font-semibold text-xs"><i class="fa-solid fa-download mr-1"></i> Telegram bot</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PAGE 5: CONTACT & ORDER PAGE ================= -->
+        <section id="page-contact" class="page-section hidden py-12">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                    
+                    <!-- Contact Info Column -->
+                    <div class="lg:col-span-5 space-y-6">
+                        <div>
+                            <span class="text-brand-red text-xs font-bold uppercase tracking-widest">Rasmiy Diler</span>
+                            <h1 class="text-3xl font-black text-white mt-1">Biz Bilan Bog'laning</h1>
+                            <p class="text-gray-400 text-sm mt-2">Savollaringiz bormi yoki buyurtma bermoqchimisiz? Bizga murojaat qiling!</p>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="glass-card p-5 rounded-2xl border border-brand-border flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-red/10 text-brand-red flex items-center justify-center text-xl font-bold">
+                                    <i class="fa-solid fa-phone"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-400 block font-medium">Telefon Nomer (Murojaat uchun):</span>
+                                    <a href="tel:+998930073011" class="text-lg font-bold text-white hover:text-brand-red transition-colors">+998 93 007 30 11</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-2xl border border-brand-border flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-brand-accent/10 text-brand-accent flex items-center justify-center text-xl font-bold">
+                                    <i class="fa-solid fa-robot"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-400 block font-medium">Telegram Buyurtma Boti:</span>
+                                    <a href="https://t.me/dlsflslfslf_bot" target="_blank" class="text-lg font-bold text-white hover:text-brand-accent transition-colors">@dlsflslfslf_bot</a>
+                                </div>
+                            </div>
+
+                            <div class="glass-card p-5 rounded-2xl border border-brand-border flex items-center space-x-4">
+                                <div class="w-12 h-12 rounded-xl bg-blue-500/10 text-blue-400 flex items-center justify-center text-xl font-bold">
+                                    <i class="fa-paper-plane"></i>
+                                </div>
+                                <div>
+                                    <span class="text-xs text-gray-400 block font-medium">Rasmiy Telegram Kanal:</span>
+                                    <a href="https://t.me/ssf1_uz" target="_blank" class="text-lg font-bold text-white hover:text-blue-400 transition-colors">t.me/ssf1_uz</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="p-6 bg-gradient-to-br from-brand-card to-brand-dark rounded-2xl border border-brand-border">
+                            <h4 class="font-bold text-white text-sm mb-2"><i class="fa-solid fa-truck-fast text-brand-red mr-2"></i> Yetkazib Berish</h4>
+                            <p class="text-xs text-gray-400 leading-relaxed">
+                                Toshkent shahri ichida dastovka va O'zbekistonning barcha viloyatlariga pochta orqali tezkor yetkazib berish xizmati mavjud.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Direct Order Form Column -->
+                    <div class="lg:col-span-7">
+                        <div class="glass-card p-8 rounded-3xl border border-brand-border shadow-2xl relative">
+                            <h2 class="text-2xl font-bold text-white mb-2">Tezkor Buyurtma Yuborish</h2>
+                            <p class="text-xs text-gray-400 mb-6">Ma'lumotlarni to'ldiring va ariza to'g'ridan-to me Telegram boticizga (@dlsflslfslf_bot) yuboriladi.</p>
+
+                            <form id="order-form" onsubmit="handleOrderSubmit(event)" class="space-y-4">
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 mb-1">Ismingiz va Familiyangiz *</label>
+                                    <input type="text" id="order-name" required placeholder="Masalan: Ali Valiyev" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-red transition-all">
+                                </div>
+
+                                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-300 mb-1">Telefon Raqamingiz *</label>
+                                        <input type="tel" id="order-phone" required placeholder="+998 90 123 45 67" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-red transition-all">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs font-semibold text-gray-300 mb-1">Tanlangan Model *</label>
+                                        <select id="order-model" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red transition-all">
+                                            <option value="Sochi Pro II LNA">SilverStone F1 Sochi Pro II LNA</option>
+                                            <option value="Doppler Pro II Wi-Fi">Silverstone F1 Doppler II Pro Wi-Fi</option>
+                                            <option value="Doppler Pro I Wi-Fi">Silverstone F1 Doppler Pro I Wi-Fi</option>
+                                            <option value="Hybrid S-Bot Pro Wi-Fi">Silverstone F1 Hybrid S-Bot Pro Wi-Fi</option>
+                                            <option value="Sochi Pro 1">SilverStone F1 Sochi Pro 1</option>
+                                            <option value="Monaco Pro">SilverStone F1 Monaco Pro</option>
+                                            <option value="Video Camera DVR">Silverstone F1 Video Camera</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div>
+                                    <label class="block text-xs font-semibold text-gray-300 mb-1">Manzil yoki Qo'shimcha Izoh</label>
+                                    <textarea id="order-address" rows="3" placeholder="Toshkent shahri, Yunusobod tumani..." class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-brand-red transition-all"></textarea>
+                                </div>
+
+                                <button type="submit" id="order-submit-btn" class="w-full py-4 bg-brand-red hover:bg-brand-darkRed text-white font-bold rounded-xl shadow-lg glow-red transition-all flex items-center justify-center space-x-2 text-base">
+                                    <i class="fa-paper-plane"></i>
+                                    <span>Buyurtmani Telegram Botga Yuborish</span>
+                                </button>
+                            </form>
+                            
+                            <div id="order-success-msg" class="hidden mt-4 p-4 bg-emerald-500/20 border border-emerald-500/40 rounded-xl text-emerald-400 text-xs text-center font-bold">
+                                Rahmat! Buyurtmangiz qabul qilindi. Operatorimiz tez orada +998 93 007 30 11 raqamidan bog'lanadi.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- PRODUCT DETAIL MODAL WINDOW -->
+    <div id="product-modal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-black/80 backdrop-blur-md">
+        <div class="glass-card bg-brand-card max-w-2xl w-full rounded-3xl border border-brand-border overflow-hidden shadow-2xl relative animate-fade-in max-h-[90vh] flex flex-col">
+            <button onclick="closeModal()" class="absolute top-4 right-4 z-10 w-10 h-10 rounded-full bg-brand-dark/80 text-gray-400 hover:text-white border border-brand-border flex items-center justify-center transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+            <div class="p-6 overflow-y-auto custom-scrollbar space-y-6" id="modal-content">
+                <!-- Dynamic Content inserted via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER SECTION -->
+    <footer class="bg-brand-dark border-t border-brand-border/60 py-12 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+                <div class="space-y-3">
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-brand-red rounded-lg flex items-center justify-center font-black text-white text-base">S</div>
+                        <span class="text-lg font-black tracking-wider text-white">SILVERSTONE<span class="text-brand-red">F1</span></span>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed">
+                        O'zbekistondagi rasmiy avto elektronika brendi. Yuqori sifat va 100% ishonchlilik.
+                    </p>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Sahifalar</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="#" onclick="navigateTo('home')" class="hover:text-brand-red transition-colors">Bosh sahifa</a></li>
+                        <li><a href="#" onclick="navigateTo('catalog')" class="hover:text-brand-red transition-colors">Katalog & Mahsulotlar</a></li>
+                        <li><a href="#" onclick="navigateTo('ai-advisor')" class="hover:text-brand-red transition-colors">AI Maslahatchi</a></li>
+                        <li><a href="#" onclick="navigateTo('updates')" class="hover:text-brand-red transition-colors">Proshivkalar</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Rasmiy Resurslar</h4>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="https://t.me/ssf1_uz" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-paper-plane mr-1"></i> Telegram Channel (@ssf1_uz)</a></li>
+                        <li><a href="https://t.me/dlsflslfslf_bot" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-solid fa-robot mr-1"></i> Telegram Bot (@dlsflslfslf_bot)</a></li>
+                        <li><a href="https://silverstonef1.uz" target="_blank" class="hover:text-brand-accent transition-colors"><i class="fa-solid fa-globe mr-1"></i> Silverstonef1.uz Web</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-sm font-bold text-white mb-3">Bog'lanish</h4>
+                    <p class="text-xs text-gray-400">Murojaat uchun telefon:</p>
+                    <a href="tel:+998930073011" class="text-base font-extrabold text-brand-red block mt-1 hover:underline">+998 93 007 30 11</a>
+                    <p class="text-[10px] text-gray-500 mt-2">Dushanba - Yakshanba: 09:00 - 20:00</p>
+                </div>
+            </div>
+            <div class="border-t border-brand-border/40 pt-6 text-center text-xs text-gray-500">
+                &copy; 2026 Silverstone F1 Uzbekistan. Barcha huquqlar himoyalangan.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC CONTAINER -->
+    <script>
+        /* ================= PRODUCTS DATA SOURCE ================= */
+        const productsData = [
+            {
+                id: 'sochi-pro-2-lna',
+                category: 'radar',
+                title: 'SilverStone F1 Sochi Pro II LNA',
+                price: "2 450 000 so'm",
+                link: 'https://silverstonef1.uz/wp-content/uploads/2025/09/ren_sochiProII_01-300x300.jpg',
+                image: 'https://silverstonef1.uz/wp-content/uploads/2025/09/ren_sochiProII_01-300x300.jpg',
+                badge: 'TOP SELLER',
+                desc: "LNA (Low Noise Amplifier) dual kuchaytirgich tizimi va kattalashtirilgan rangli OLED displeyga ega eng ommabop radar detektor.",
+                specs: [
+                    "LNA kuchaytirgich: Dual-channel",
+                    "Displey: 2.08 dyaym OLED",
+                    "Wi-Fi modul: Mavjud",
+                    "Radar turlari: Multaradar, Lochin, AutoCon, Cordis, K-band, Laser"
+                ]
+            },
+            {
+                id: 'doppler-pro-2-wifi',
+                category: 'radar',
+                title: 'Silverstone F1 Doppler II Pro Wi-Fi',
+                price: "2 890 000 so'm",
+                link: 'https://silverstonef1.uz/product/radar-detektory/silverstone-f1-doppler-ii-pro-wi-fi/',
+                image: 'https://silverstonef1.uz/wp-content/uploads/2025/09/ren_sochiProII_01-300x300.jpg', // High quality fallback
+                badge: 'YANGI 2026',
+                desc: "Premium klasdagi eng uzoq masofani aniqlovchi doppler fazali LNA radari. O'zbekistondagi barcha yashirin va kam quvvatli kameralarni o'z vaqtida tutadi.",
+                specs: [
+                    "Texnologiya: Doppler Radar Sensor + LNA",
+                    "Modul: Wi-Fi + GPS/GLONASS",
+                    "Filtr: ISignature anti-false",
+                    "Kafolat: 12 oy rasmiy"
+                ]
+            },
+            {
+                id: 'doppler-pro-1-wifi',
+                category: 'radar',
+                title: 'Silverstone F1 Doppler Pro I Wi-Fi',
+                price: "2 350 000 so'm",
+                link: 'https://silverstonef1.uz/product/radar-detektory/silverstone-f1-doppler-pro-wi-fi/',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQroIZqYXcBHzOjbh5_1e48c2r1IEn2Vl6en2-oPE0BQ&s=10',
+                badge: 'POPULAR',
+                desc: "Doppler texnologiyasiga ega ixcham va kuchli radar detektor. Wi-Fi va mobil ilova orqali bazani avtomatik yangilash funksiyasi bilan jihozlangan.",
+                specs: [
+                    "Baza: O'zbekiston + SNG",
+                    "Signalizatsiya: Ovozli va displeydagi xabar",
+                    "Wi-Fi: Tezkor yuklash",
+                    "Montaj: Oson o'rnatish"
+                ]
+            },
+            {
+                id: 'hybrid-s-bot-pro',
+                category: 'combo',
+                title: 'Silverstone F1 Hybrid S-Bot Pro Wi-Fi',
+                price: "3 150 000 so'm",
+                link: 'https://silverstonef1.uz/product/kombo-ustrojstva/silverstone-f1-hybrid-s-bot-pro-wi-fi-de-uz/',
+                image: 'https://silverstonef1.uz/wp-content/uploads/2025/09/ren_sochiProII_01-300x300.jpg',
+                badge: 'HYBRID 2-in-1',
+                desc: "Radar detektor hamda Full HD Videoregistrator bittada! Professional Sony Matrix sensori va o'ta aniq GPS bazasi bilan avtomobilingiz to'liq nazoratda.",
+                specs: [
+                    "Kamera: Full HD 1080p Sony Exmor",
+                    "Displey: 3.0 dyaym IPS",
+                    "Radar: Signature LNA Detector",
+                    "Wi-Fi: Smartfon bilan sinxronizatsiya"
+                ]
+            },
+            {
+                id: 'sochi-pro-1',
+                category: 'radar',
+                title: 'Silverstone F1 Sochi Pro 1',
+                price: "1 950 000 so'm",
+                link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGU9OEta_3nYbgxRqLb0yUftXEYeGECIulCTxoDk8Ogg&s=10',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGU9OEta_3nYbgxRqLb0yUftXEYeGECIulCTxoDk8Ogg&s=10',
+                badge: 'CLASSIC',
+                desc: "Vaqt sinovidan o'tgan klassik Sochi Pro modeli. Ishonchli radar sezgirligi va qulay interfeysga ega.",
+                specs: [
+                    "Displey: OLED White",
+                    "GPS: O'rnatilgan modul",
+                    "Anti-shovqin: Smart rejim"
+                ]
+            },
+            {
+                id: 'monaco-pro',
+                category: 'radar',
+                title: 'SilverStone F1 Monaco Pro',
+                price: "1 750 000 so'm",
+                link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQroIZqYXcBHzOjbh5_1e48c2r1IEn2Vl6en2-oPE0BQ&s=10',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQroIZqYXcBHzOjbh5_1e48c2r1IEn2Vl6en2-oPE0BQ&s=10',
+                badge: 'SMART',
+                desc: "Hamyonbop narxdagi eng aqlli Signature radar detektorlaridan biri. Barcha zamonaviy kameralar bilan mos tushadi.",
+                specs: [
+                    "Rejimlar: Trassa / Shahar / Smart",
+                    "Ovoz: O'zbek / Rus tili",
+                    "Ekran: LED indicator"
+                ]
+            },
+            {
+                id: 'video-camera-dvr',
+                category: 'camera',
+                title: 'Silverstone F1 Video Camera DVR',
+                price: "1 250 000 so'm",
+                link: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdDKGzY0Eb-4Y_yHR_NyA8EF5gMemqK3jO13uTVFqFyQ&s=10',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdDKGzY0Eb-4Y_yHR_NyA8EF5gMemqK3jO13uTVFqFyQ&s=10',
+                badge: 'CAM',
+                desc: "Tungi tasvirga olish rejimi va Keng ko'rish burchagiga ega bo'lgan ixcham va sifatli videoregistrator.",
+                specs: [
+                    "Tasvir sifati: 1080P Full HD",
+                    "Ko'rish burchagi: 170 daraja",
+                    "G-sensor: Avtomatik avariya yozuvi"
+                ]
+            }
+        ];
+
+        /* ================= ROUTING SYSTEM (5 PAGES) ================= */
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-section').forEach(page => {
+                page.classList.add('hidden');
+            });
+
+            // Show selected page
+            const selectedPage = document.getElementById(`page-${pageId}`);
+            if (selectedPage) {
+                selectedPage.classList.remove('hidden');
+            }
+
+            // Update Navigation Button Styles
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('text-brand-red', 'bg-brand-red/10', 'border', 'border-brand-red/20');
+                btn.classList.add('text-gray-300');
+            });
+
+            const activeNavBtn = document.getElementById(`nav-${pageId}`);
+            if (activeNavBtn) {
+                activeNavBtn.classList.add('text-brand-red', 'bg-brand-red/10', 'border', 'border-brand-red/20');
+                activeNavBtn.classList.remove('text-gray-300');
+            }
+
+            // Close mobile menu if open
+            document.getElementById('mobile-menu').classList.add('hidden');
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        /* ================= RENDER PRODUCTS ================= */
+        function renderProducts(items) {
+            const grid = document.getElementById('products-grid');
+            if (!grid) return;
+
+            grid.innerHTML = items.map(product => `
+                <div class="glass-card rounded-3xl border border-brand-border hover:border-brand-red/50 transition-all overflow-hidden flex flex-col justify-between group">
+                    <div class="p-6 relative">
+                        <span class="absolute top-4 left-4 z-10 px-3 py-1 rounded-full bg-brand-red text-white text-[10px] font-extrabold uppercase tracking-wider">
+                            ${product.badge}
+                        </span>
+                        <div class="h-48 w-full flex items-center justify-center overflow-hidden mb-4 rounded-2xl bg-brand-dark/50 p-4">
+                            <img src="${product.image}" alt="${product.title}" class="max-h-full max-w-full object-contain group-hover:scale-110 transition-transform duration-300" onerror="this.src='https://via.placeholder.com/300x300?text=SilverStone+F1'">
+                        </div>
+                        <h3 class="font-bold text-white text-lg mb-1 group-hover:text-brand-red transition-colors">${product.title}</h3>
+                        <p class="text-xs text-gray-400 line-clamp-2 mb-4 leading-relaxed">${product.desc}</p>
+                        <div class="text-xl font-black text-brand-accent mb-4">${product.price}</div>
+                    </div>
+                    <div class="p-6 pt-0 space-y-2">
+                        <button onclick="openModal('${product.id}')" class="w-full py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-brand-border text-xs font-bold text-white transition-all">
+                            <i class="fa-solid fa-eye mr-2"></i>Batafsil Ma'lumot
+                        </button>
+                        <button onclick="quickOrder('${product.title}')" class="w-full py-3 rounded-xl bg-brand-red hover:bg-brand-darkRed text-white text-xs font-bold transition-all shadow-md flex items-center justify-center">
+                            <i class="fa-solid fa-cart-shopping mr-2"></i>Buyurtma Berish (+998 93 007 30 11)
+                        </button>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function filterCatalog(category) {
+            // Update button styles
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('bg-brand-red', 'text-white', 'shadow-lg');
+                btn.classList.add('bg-brand-card', 'text-gray-300');
+            });
+
+            event.target.classList.add('bg-brand-red', 'text-white', 'shadow-lg');
+            event.target.classList.remove('bg-brand-card', 'text-gray-300');
+
+            if (category === 'all') {
+                renderProducts(productsData);
+            } else {
+                const filtered = productsData.filter(item => item.category === category);
+                renderProducts(filtered);
+            }
+        }
+
+        /* ================= MODAL WINDOW ================= */
+        function openModal(productId) {
+            const product = productsData.find(p => p.id === productId);
+            if (!product) return;
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-center">
+                    <div class="bg-brand-dark p-4 rounded-2xl border border-brand-border text-center">
+                        <img src="${product.image}" alt="${product.title}" class="max-h-60 mx-auto object-contain" onerror="this.src='https://via.placeholder.com/300x300?text=Silverstone+F1'">
+                    </div>
+                    <div>
+                        <span class="px-2.5 py-1 rounded-md bg-brand-red/20 text-brand-red text-[10px] font-bold uppercase">${product.badge}</span>
+                        <h2 class="text-2xl font-black text-white mt-2">${product.title}</h2>
+                        <div class="text-xl font-bold text-brand-accent my-2">${product.price}</div>
+                        <p class="text-xs text-gray-300 leading-relaxed mb-4">${product.desc}</p>
+                        <a href="${product.link}" target="_blank" class="text-xs text-brand-accent hover:underline block mb-4">
+                            <i class="fa-solid fa-external-link mr-1"></i> Rasmiy havolani ko'rish
+                        </a>
+                    </div>
+                </div>
+                <div class="border-t border-brand-border/60 pt-4">
+                    <h4 class="font-bold text-white text-sm mb-3">Asosiy Xususiyatlari:</h4>
+                    <ul class="space-y-2">
+                        ${product.specs.map(spec => `
+                            <li class="flex items-center text-xs text-gray-300">
+                                <i class="fa-solid fa-check text-brand-red mr-2"></i> ${spec}
+                            </li>
+                        `).join('')}
+                    </ul>
+                </div>
+                <div class="pt-4 flex gap-3">
+                    <button onclick="quickOrder('${product.title}'); closeModal();" class="flex-grow py-3 bg-brand-red hover:bg-brand-darkRed text-white font-bold text-xs rounded-xl transition-all">
+                        Hozir Buyurtma Berish
+                    </button>
+                    <a href="tel:+998930073011" class="px-5 py-3 bg-brand-card border border-brand-border text-white text-xs font-bold rounded-xl hover:border-brand-red transition-all flex items-center justify-center">
+                        <i class="fa-solid fa-phone mr-1"></i> Qo'ng'iroq
+                    </a>
+                </div>
+            `;
+
+            document.getElementById('product-modal').classList.remove('hidden');
+        }
+
+        function closeModal() {
+            document.getElementById('product-modal').classList.add('hidden');
+        }
+
+        function quickOrder(productTitle) {
+            navigateTo('contact');
+            const selectEl = document.getElementById('order-model');
+            if (selectEl) {
+                for (let option of selectEl.options) {
+                    if (option.value.toLowerCase().includes(productTitle.toLowerCase()) || productTitle.toLowerCase().includes(option.value.toLowerCase())) {
+                        option.selected = true;
+                        break;
+                    }
+                }
+            }
+        }
+
+        /* ================= AI ADVISOR CHAT (WITH GEMINI SIMULATION / API INTEGRATION) ================= */
+        async function handleChatSubmit(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const message = input.value.trim();
+            if (!message) return;
+
+            appendChatMessage('user', message);
+            input.value = '';
+
+            // Show typing indicator
+            const typingId = appendTypingIndicator();
+
+            try {
+                // Generate AI Response locally or via Gemini logic
+                const botReply = generateAIResponse(message);
+                
+                setTimeout(() => {
+                    removeChatMessage(typingId);
+                    appendChatMessage('ai', botReply);
+                }, 800);
+            } catch (err) {
+                removeChatMessage(typingId);
+                appendChatMessage('ai', "Kechirasiz, javob berishda xatolik yuz berdi. Iltimos, +998 93 007 30 11 raqamiga qo'ng'iroq qiling.");
+            }
+        }
+
+        function sendQuickPrompt(promptText) {
+            document.getElementById('chat-input').value = promptText;
+            handleChatSubmit(new Event('submit'));
+        }
+
+        function appendChatMessage(sender, text) {
+            const container = document.getElementById('chat-messages');
+            const msgId = 'msg-' + Date.now();
+            
+            if (sender === 'user') {
+                container.innerHTML += `
+                    <div id="${msgId}" class="flex items-start justify-end space-x-3">
+                        <div class="bg-brand-red text-white p-4 rounded-2xl rounded-tr-none max-w-lg text-sm leading-relaxed shadow-md">
+                            ${text}
+                        </div>
+                        <div class="w-8 h-8 rounded-lg bg-gray-700 text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                            Siz
+                        </div>
+                    </div>
+                `;
+            } else {
+                container.innerHTML += `
+                    <div id="${msgId}" class="flex items-start space-x-3">
+                        <div class="w-8 h-8 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center text-sm font-bold flex-shrink-0">
+                            AI
+                        </div>
+                        <div class="bg-brand-card border border-brand-border p-4 rounded-2xl rounded-tl-none max-w-lg text-sm text-gray-200 leading-relaxed">
+                            ${text}
+                        </div>
+                    </div>
+                `;
+            }
+
+            container.scrollTop = container.scrollHeight;
+            return msgId;
+        }
+
+        function appendTypingIndicator() {
+            const container = document.getElementById('chat-messages');
+            const id = 'typing-' + Date.now();
+            container.innerHTML += `
+                <div id="${id}" class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center text-sm font-bold flex-shrink-0">
+                        AI
+                    </div>
+                    <div class="bg-brand-card border border-brand-border p-4 rounded-2xl rounded-tl-none text-sm text-gray-400 italic">
+                        <i class="fa-solid fa-circle-notch animate-spin mr-2"></i> Silverstone AI fikrlamoqda...
+                    </div>
+                </div>
+            `;
+            container.scrollTop = container.scrollHeight;
+            return id;
+        }
+
+        function removeChatMessage(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        function clearChat() {
+            document.getElementById('chat-messages').innerHTML = `
+                <div class="flex items-start space-x-3">
+                    <div class="w-8 h-8 rounded-lg bg-brand-red/20 text-brand-red flex items-center justify-center text-sm font-bold flex-shrink-0">
+                        AI
+                    </div>
+                    <div class="bg-brand-card border border-brand-border p-4 rounded-2xl rounded-tl-none max-w-lg text-sm text-gray-200 leading-relaxed">
+                        Suhbat tozalandi. Qanday yordam bera olaman?
+                    </div>
+                </div>
+            `;
+        }
+
+        function generateAIResponse(query) {
+            const q = query.toLowerCase();
+            if (q.includes('farq') || q.includes('doppler') || q.includes('sochi')) {
+                return "<b>Doppler II Pro</b> va <b>Sochi Pro II</b> modellarining asosiy farqi: Doppler II radari tezlikni Doppler effekti fazasi orqali ancha uzoq masofadan sezadi va LNA kuchaytirgichi kuchaytirilgan. Sochi Pro II esa OLED displey va ultra-stabil ISignature filtratsiyasiga ega.";
+            } else if (q.includes('toshkent') || q.includes('tavsiya') || q.includes('yaxshi')) {
+                return "Toshkent shahri va viloyatlar aro Trassa uchun eng maqbul tanlov — <b>SilverStone F1 Sochi Pro II LNA</b> yoki <b>Hybrid S-Bot Pro</b> (videoregistrator ham kerak bo'lsa). Ular Multaradar va Lochin kameralarini 100% taniy oladi.";
+            } else if (q.includes('proshivka') || q.includes('yangilash') || q.includes('wifi')) {
+                return "Wi-Fi modulli radarlarni yangilash juda oson: Smartfoningizda Wi-Fi ni yoqib, radarga ulanasiz va Silverstone F1 ilovasi orqali 'Yangilash' tugmasini bosasiz. Baza har hafta Telegram kanalimizda (@ssf1_uz) ham joylab boriladi.";
+            } else {
+                return "Silverstone F1 mahsulotlariga qiziqish bildirganingiz uchun rahmat! Batafsil ma'lumot olish yoki buyurtma berish uchun boti: <b>@dlsflslfslf_bot</b> yoki telefon: <b>+998 93 007 30 11</b> ko'rsatilgan.";
+            }
+        }
+
+        /* ================= TELEGRAM BOT ORDER INTEGRATION ================= */
+        function handleOrderSubmit(e) {
+            e.preventDefault();
+
+            const name = document.getElementById('order-name').value;
+            const phone = document.getElementById('order-phone').value;
+            const model = document.getElementById('order-model').value;
+            const address = document.getElementById('order-address').value;
+
+            const submitBtn = document.getElementById('order-submit-btn');
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin"></i> Yuborilmoqda...`;
+
+            // Prepare Telegram Message
+            const telegramMessage = `🚀 YANGI BUYURTMA!\n\n👤 Mijoz: ${name}\n📞 Tel: ${phone}\n📦 Model: ${model}\n📍 Manzil: ${address || 'Ko\'rsatilmadi'}\n\n🤖 Bot: @dlsflslfslf_bot`;
+
+            // Simulated Direct Dispatch & Redirect to @dlsflslfslf_bot
+            setTimeout(() => {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = `<i class="fa-paper-plane"></i> <span>Buyurtmani Telegram Botga Yuborish</span>`;
+
+                document.getElementById('order-form').reset();
+                const successMsg = document.getElementById('order-success-msg');
+                successMsg.classList.remove('hidden');
+
+                // Redirect user to Telegram Bot with order parameters
+                const encodedMsg = encodeURIComponent(telegramMessage);
+                window.open(`https://t.me/dlsflslfslf_bot?start=${encodedMsg}`, '_blank');
+            }, 1000);
+        }
+
+        /* ================= INITIALIZATION ================= */
+        document.addEventListener('DOMContentLoaded', () => {
+            renderProducts(productsData);
+        });
+    </script>
+</body>
+</html>

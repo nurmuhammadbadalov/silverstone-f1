@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SilverStone F1 Uzbekistan - Jarima Tejamkorlik Kalkulyatori</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            red: '#E50914',
+                            darkRed: '#B80710',
+                            silver: '#C0C0C0',
+                            dark: '#0B0F17',
+                            card: '#151C28',
+                            border: '#2A3447',
+                            accent: '#00F0FF'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(21, 28, 40, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .glow-red {
+            box-shadow: 0 0 25px rgba(229, 9, 20, 0.35);
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #0B0F17;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #2A3447;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body class="bg-[#0B0F17] text-gray-100 font-sans min-h-screen flex flex-col antialiased custom-scrollbar">
+
+    <!-- HEADER NAVIGATION -->
+    <header class="sticky top-0 z-50 glass-card border-b border-brand-border/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <div class="flex items-center space-x-3 cursor-pointer">
+                    <div class="w-10 h-10 bg-brand-red rounded-xl flex items-center justify-center font-black text-xl text-white transform -skew-x-12 glow-red">
+                        S
+                    </div>
+                    <div>
+                        <span class="text-2xl font-black tracking-wider text-white">SILVERSTONE<span class="text-brand-red">F1</span></span>
+                        <span class="block text-[10px] tracking-widest text-gray-400 font-bold uppercase">Tejamkorlik Kalkulyatori</span>
+                    </div>
+                </div>
+
+                <div class="hidden sm:flex items-center space-x-4">
+                    <a href="tel:+998930073011" class="px-4 py-2 rounded-xl bg-brand-red hover:bg-brand-darkRed text-white font-bold text-xs shadow-md transition-all">
+                        <i class="fa-solid fa-phone mr-2"></i>+998 93 007 30 11
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-grow py-12">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            
+            <div class="text-center max-w-2xl mx-auto mb-10">
+                <span class="text-brand-accent text-xs font-bold uppercase tracking-widest px-4 py-1.5 bg-brand-accent/10 border border-brand-accent/30 rounded-full inline-block mb-3">
+                    <i class="fa-solid fa-calculator mr-1"></i> Hisob-Kitob Tizimi
+                </span>
+                <h1 class="text-4xl font-black text-white">Jarima Tejamkorligi Kalkulyatori</h1>
+                <p class="text-gray-400 text-sm mt-2">SilverStone F1 radar detektorini sotib olib bir yilda qancha pulingizni tejab qolishingizni hisoblang.</p>
+            </div>
+
+            <!-- Calculator Interactive Box -->
+            <div class="glass-card p-8 rounded-3xl border border-brand-border shadow-2xl space-y-8">
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-2">Bir oyda o'rtacha necha km yo'l yurasiz?</label>
+                        <input type="number" id="calc-km" value="1500" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red transition-all" oninput="calculateSavings()">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-2">Qaysi hududlarda ko'proq haydaysiz?</label>
+                        <select id="calc-region" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red transition-all" onchange="calculateSavings()">
+                            <option value="1.5">Toshkent shahri (Kameralar o'ta ko'p)</option>
+                            <option value="1.2">Viloyatlar va Shaharlararo Trassa</option>
+                            <option value="1.0">Faqat shahar ichi</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-2">Yillik taxminiy radar jarimalaringiz soni:</label>
+                        <input type="range" id="calc-fines" min="1" max="15" value="4" class="w-full accent-brand-red cursor-pointer" oninput="calculateSavings()">
+                        <div class="text-right text-xs text-brand-accent font-bold mt-1" id="fines-count-label">4 ta jarima / yil</div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-gray-300 mb-2">Tanlanadigan Radar Modeli:</label>
+                        <select id="calc-model" class="w-full bg-brand-dark border border-brand-border rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-brand-red transition-all" onchange="calculateSavings()">
+                            <option value="2450000">SilverStone F1 Sochi Pro II LNA (2 450 000 so'm)</option>
+                            <option value="2890000">Silverstone F1 Doppler II Pro Wi-Fi (2 890 000 so'm)</option>
+                            <option value="3150000">Silverstone F1 Hybrid S-Bot Pro (3 150 000 so'm)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="border-t border-brand-border/60 pt-6">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+                        <div class="p-4 bg-brand-dark/80 rounded-2xl border border-brand-border">
+                            <span class="text-[11px] text-gray-400 block font-medium">Yillik Taxminiy Jarima Xarajati:</span>
+                            <span class="text-xl font-black text-brand-red" id="res-fines-cost">2 040 000 so'm</span>
+                        </div>
+                        <div class="p-4 bg-brand-dark/80 rounded-2xl border border-brand-border">
+                            <span class="text-[11px] text-gray-400 block font-medium">Radar O'zini Oqlash Vaqti:</span>
+                            <span class="text-xl font-black text-brand-accent" id="res-payback">1.2 Yil</span>
+                        </div>
+                        <div class="p-4 bg-brand-dark/80 rounded-2xl border border-brand-border">
+                            <span class="text-[11px] text-gray-400 block font-medium">3 Yildagi Sof Tejamkorlik:</span>
+                            <span class="text-xl font-black text-emerald-400" id="res-savings">3 670 000 so'm</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="text-center pt-2">
+                    <a href="https://t.me/dlsflslfslf_bot" target="_blank" class="inline-flex items-center space-x-2 px-8 py-4 bg-brand-red hover:bg-brand-darkRed text-white font-bold rounded-xl shadow-lg glow-red transition-all text-sm">
+                        <i class="fa-solid fa-cart-shopping"></i>
+                        <span>Tejamkor Radarni Telegram Botdan Buyurtma Qilish</span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-dark border-t border-brand-border/60 py-6 mt-auto text-center text-xs text-gray-500">
+        &copy; 2026 SilverStone F1 Uzbekistan. Kalkulyator va Tejamkorlik Sahifasi.
+    </footer>
+
+    <script>
+        function calculateSavings() {
+            const finesCount = parseInt(document.getElementById('calc-fines').value);
+            document.getElementById('fines-count-label').innerText = finesCount + ' ta jarima / yil';
+
+            const regionMultiplier = parseFloat(document.getElementById('calc-region').value);
+            const modelPrice = parseInt(document.getElementById('calc-model').value);
+            
+            // Average speed fine ~ 510,000 UZS
+            const avgFine = 510000;
+            const annualFineCost = Math.round(finesCount * avgFine * regionMultiplier);
+            const paybackYears = (modelPrice / annualFineCost).toFixed(1);
+            const threeYearSavings = Math.round((annualFineCost * 3) - modelPrice);
+
+            document.getElementById('res-fines-cost').innerText = annualFineCost.toLocaleString('uz-UZ') + " so'm";
+            document.getElementById('res-payback').innerText = paybackYears + " Yil";
+            document.getElementById('res-savings').innerText = (threeYearSavings > 0 ? threeYearSavings.toLocaleString('uz-UZ') : 0) + " so'm";
+        }
+        calculateSavings();
+    </script>
+</body>
+</html>
